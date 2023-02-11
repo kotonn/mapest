@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './components/HomeScreen';
+import HomeScreen from './components/HomeScreen/HomeScreen';
 import RegisterScreen from './components/frontScreen/RegisterScreen';
 import LoginScreen from './components/frontScreen/LoginScreen';
 import { View, Text, StyleSheet } from 'react-native';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
+import ToDoScreen from './components/ToDoScreen/ToDoScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +40,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           {user ? (
-            <Stack.Screen name="Home" component={HomeScreen} options={{ headerStyle: { backgroundColor: '#A5C3CF' }, title: "", headerShadowVisible: false, headerBackVisible: false }} />
+            <>
+              <Stack.Screen name="Home" component={HomeScreen} options={{ headerStyle: { backgroundColor: '#A5C3CF' }, title: "", headerShadowVisible: false, headerBackVisible: false }} />
+              <Stack.Screen name="ToDo" component={ToDoScreen} options={{ headerStyle: { backgroundColor: '#A5C3CF' }, title: "", headerShadowVisible: false, headerBackVisible: false }} />
+            </>
           ) : (
             <>
               <Stack.Screen name="Register" component={RegisterScreen} options={{ headerStyle: { backgroundColor: '#A5C3CF' }, title: "", headerShadowVisible: false }} />

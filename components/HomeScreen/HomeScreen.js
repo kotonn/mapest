@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, KeyboardAvoidingView, View, TextInput, TouchableOpacity, Button } from 'react-native';
+import { Text, KeyboardAvoidingView, View, TextInput, TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
 import { WEATHER_URL, WEAHTER_API_KEY } from '@env';
 import { AntDesign } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
     const [weather, setWeather] = useState('');
@@ -13,6 +15,7 @@ export default function HomeScreen() {
     const [lowTemp, setLowTemp] = useState('');
     const [loading, setLoading] = useState(true);
     const [prefecture, setPrefecture] = useState('');
+    const navigation = useNavigation();
 
     useEffect(() => {
         const getLocation = async () => {
@@ -211,8 +214,6 @@ export default function HomeScreen() {
         }
     };
 
-
-
     if (loading) {
         return (
             <KeyboardAvoidingView
@@ -250,7 +251,7 @@ export default function HomeScreen() {
                             width: 230,
                             height: 40,
                             borderWidth: 1,
-                            marginTop: -100,
+                            marginTop: -130,
                             marginRight: 10,
                             marginBottom: 40,
                             borderRadius: 10,
@@ -268,117 +269,171 @@ export default function HomeScreen() {
                     />
                     <TouchableOpacity
                         onPress={getWeather}
-                        style={{ backgroundColor: "white", width: 50, height: 40, borderRadius: 10, justifyContent: 'center', alignItems: "center", marginTop: -100, opacity: 0.8 }}
+                        style={{ backgroundColor: "white", width: 50, height: 40, borderRadius: 10, justifyContent: 'center', alignItems: "center", marginTop: -130, opacity: 0.8 }}
                     >
                         <AntDesign name="search1" size={24} color="black" style={{ opacity: 0.5 }} />
                     </TouchableOpacity>
                 </View>
                 {weather == "Clouds" ? (
                     <>
-                        <AntDesign name="cloudo" size={80} color="white" style={{ opacity: 0.8 }} />
+                        <AntDesign name="cloudo" size={80} color="white" style={{ opacity: 0.8, marginTop: -30 }} />
                         <Text style={{ color: "white", opacity: 0.8, fontSize: 15, fontWeight: "bold", marginTop: 5 }}>くもり</Text>
                         <View style={{
                             display: 'flex',
                             flexDirection: 'row',
-                            marginTop: 30
+                            marginTop: 20
                         }}>
-                            <Text style={{ color: "#FB6542", marginRight: 20, fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(highTemp)}°
-                            </Text>
-                            <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(lowTemp)}°
-                            </Text>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", marginRight: 15, width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#FB6542", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(highTemp)}°
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(lowTemp)}°
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </>
                 ) : weather == "Clear" ? (
                     <>
-                        <Fontisto name="day-sunny" size={80} color="#F8D8B7" style={{ opacity: 0.8 }} />
+                        <Fontisto name="day-sunny" size={80} color="#F8D8B7" style={{ opacity: 0.8, marginTop: -30 }} />
                         <Text style={{ color: "#F8D8B7", opacity: 0.8, fontSize: 15, fontWeight: "bold", marginTop: 7 }}>はれ</Text>
                         <View style={{
                             display: 'flex',
                             flexDirection: 'row',
                             marginTop: 30
                         }}>
-                            <Text style={{ color: "#FB6542", marginRight: 20, fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(highTemp)}°
-                            </Text>
-                            <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(lowTemp)}°
-                            </Text>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", marginRight: 15, width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#FB6542", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(highTemp)}°
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(lowTemp)}°
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </>
                 ) : weather == "Mist" || weather == "Smoke" || weather == "Haze" || weather == "Dust" || weather == "Fog" || weather == "Sand" || weather == "Ash" || weather == "Squall" || weather == "Tornado" ? (
                     <>
-                        <Fontisto name="fog" size={80} color="white" style={{ opacity: 0.8 }} />
+                        <Fontisto name="fog" size={80} color="white" style={{ opacity: 0.8, marginTop: -30 }} />
                         <Text style={{ color: "white", opacity: 0.8, fontSize: 15, fontWeight: "bold", marginTop: 13 }}>きり</Text>
                         <View style={{
                             display: 'flex',
                             flexDirection: 'row',
                             marginTop: 30
                         }}>
-                            <Text style={{ color: "#FB6542", marginRight: 20, fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(highTemp)}°
-                            </Text>
-                            <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(lowTemp)}°
-                            </Text>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", marginRight: 15, width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#FB6542", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(highTemp)}°
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(lowTemp)}°
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </>
                 ) : weather == "snow" ? (
                     <>
-                        <Feather name="cloud-snow" size={80} color="white" />
+                        <Feather name="cloud-snow" size={80} color="white" style={{ marginTop: -30 }} />
                         <Text style={{ color: "white", fontSize: 15, fontWeight: "bold", marginTop: 13 }}>ゆき</Text>
                         <View style={{
                             display: 'flex',
                             flexDirection: 'row',
                             marginTop: 30
                         }}>
-                            <Text style={{ color: "#FB6542", marginRight: 20, fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(highTemp)}°
-                            </Text>
-                            <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(lowTemp)}°
-                            </Text>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", marginRight: 15, width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#FB6542", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(highTemp)}°
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(lowTemp)}°
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </>
                 ) : weather == "Rain" || weather == "Drizzle" ? (
                     <>
-                        <Feather name="cloud-rain" size={80} color="white" style={{ opacity: 0.8 }} />
+                        <Feather name="cloud-rain" size={80} color="white" style={{ opacity: 0.8, marginTop: -30 }} />
                         <Text style={{ color: "white", opacity: 0.8, fontSize: 15, fontWeight: "bold", marginTop: 13 }}>あめ</Text>
                         <View style={{
                             display: 'flex',
                             flexDirection: 'row',
                             marginTop: 30
                         }}>
-                            <Text style={{ color: "#FB6542", marginRight: 20, fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(highTemp)}°
-                            </Text>
-                            <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(lowTemp)}°
-                            </Text>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", marginRight: 15, width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#FB6542", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(highTemp)}°
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(lowTemp)}°
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </>
                 ) : weather == "Thunderstorm" ? (
                     <>
-                        <Entypo name="thunder-cloud" size={80} color="black" />
+                        <Entypo name="thunder-cloud" size={80} color="black" style={{ marginTop: -30 }} />
                         <Text style={{ color: "black", fontSize: 15, fontWeight: "bold", marginTop: 5 }}>かみなり</Text>
                         <View style={{
                             display: 'flex',
                             flexDirection: 'row',
                             marginTop: 30
                         }}>
-                            <Text style={{ color: "#FB6542", marginRight: 20, fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(highTemp)}°
-                            </Text>
-                            <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
-                                {Math.floor(lowTemp)}°
-                            </Text>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", marginRight: 15, width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#FB6542", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(highTemp)}°
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ borderRadius: 100, opacity: 0.8, backgroundColor: "white", width: 30, height: 30, justifyContent: 'center', alignItems: "center" }}
+                            >
+                                <Text style={{ color: "#375E97", fontSize: 15, fontWeight: "bold" }}>
+                                    {Math.floor(lowTemp)}°
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </>
                 )
                     : (
                         <AntDesign name="question" size={80} color="white" />
                     )}
+                <TouchableOpacity
+                    style={{ width: 70, height: 70, borderRadius: 50, position: "absolute", right: 50, bottom: 70, opacity: 0.8 }}
+                    onPress={() => { navigation.navigate("ToDo") }}
+                >
+                    <Ionicons name="ios-add-circle-outline" size={70} color="white" />
+                </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
     );
