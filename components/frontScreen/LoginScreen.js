@@ -96,7 +96,7 @@ const LoginScreen = () => {
                 style={{ marginTop: 19 }}
                 onPress={() => navigation.navigate('Register')}
             >
-                <Text>とうろくはこちら</Text>
+                <Text>登録はこちら</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     );
