@@ -9,11 +9,13 @@ export default function ToDoScreen() {
     const navigation = useNavigation();
     const [todo, setTodo] = useState('');
     const [todoList, setTodoList] = useState([]);
-    const [check, setCheck] = useState(false);
+    const [checkOne, setCheckOne] = useState(false);
+    const [checkTwo, setCheckTwo] = useState(false);
+    const [checkThree, setCheckThree] = useState(false);
+    const [checkFour, setCheckFour] = useState(false);
 
     const getTodo = () => {
         setTodoList([...todoList, todo]);
-        console.log(todoList);
     }
 
     return (
@@ -38,7 +40,7 @@ export default function ToDoScreen() {
                             width: 230,
                             height: 40,
                             borderWidth: 1,
-                            marginTop: -200,
+                            marginTop: -120,
                             marginRight: 10,
                             marginBottom: 40,
                             borderRadius: 10,
@@ -56,28 +58,87 @@ export default function ToDoScreen() {
                     />
                     <TouchableOpacity
                         onPress={getTodo}
-                        style={{ backgroundColor: "white", width: 50, height: 40, borderRadius: 10, justifyContent: 'center', alignItems: "center", marginTop: -200, opacity: 0.8 }}
+                        style={{ backgroundColor: "white", width: 50, height: 40, borderRadius: 10, justifyContent: 'center', alignItems: "center", marginTop: -120, opacity: 0.8 }}
                     >
                         <Ionicons name="checkmark" size={24} color="black" style={{ opacity: 0.5 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
+                    marginBottom: -50
                 }}>
                     <TouchableOpacity
-                        style={{ width: 70, height: 70, opacity: 0.8, marginTop: -110 }}
-                        onPress={() => { setCheck(!check) }}
+                        style={{ width: 60, height: 60, opacity: 0.8, marginTop: -50, marginBottom: 10 }}
+                        onPress={() => { setCheckOne(!checkOne) }}
                     >
-                        {check == false ? (
-                            <View style={{ display: "flex", flexDirection: "row", marginLeft: -40 }}>
-                                <Feather name="square" size={60} color="white" style={{ marginRight: 10 }} />
-                                <Text style={{ fontSize: 40 }}>{todoList[1]}</Text>
-                            </View>
-                        ) : (
-                            <>
-                            </>
-                        )}
+                        <View style={{ display: "flex", flexDirection: "row", marginLeft: -50 }}>
+                            {!checkOne ?
+                                <>
+                                    <Feather name="square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[1]}</Text>
+                                </>
+                                :
+                                <>
+                                    <Feather name="check-square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[1]}</Text>
+                                </>
+                            }
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: 60, height: 60, opacity: 0.8, marginBottom: 10 }}
+                        onPress={() => { setCheckTwo(!checkTwo) }}
+                    >
+                        <View style={{ display: "flex", flexDirection: "row", marginLeft: -50 }}>
+                            {!checkTwo ?
+                                <>
+                                    <Feather name="square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[2]}</Text>
+                                </>
+                                :
+                                <>
+                                    <Feather name="check-square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[2]}</Text>
+                                </>
+                            }
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: 60, height: 60, opacity: 0.8, marginBottom: 10 }}
+                        onPress={() => { setCheckThree(!checkThree) }}
+                    >
+                        <View style={{ display: "flex", flexDirection: "row", marginLeft: -50 }}>
+                            {!checkThree ?
+                                <>
+                                    <Feather name="square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[3]}</Text>
+                                </>
+                                :
+                                <>
+                                    <Feather name="check-square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[3]}</Text>
+                                </>
+                            }
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: 60, height: 60, opacity: 0.8, marginBottom: 10 }}
+                        onPress={() => { setCheckFour(!checkFour) }}
+                    >
+                        <View style={{ display: "flex", flexDirection: "row", marginLeft: -50 }}>
+                            {!checkFour ?
+                                <>
+                                    <Feather name="square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[4]}</Text>
+                                </>
+                                :
+                                <>
+                                    <Feather name="check-square" size={50} color="white" style={{ marginRight: 30, marginLeft: -60 }} />
+                                    <Text style={{ fontSize: 40, color: "white", fontWeight: "bold" }}>{todoList[4]}</Text>
+                                </>
+                            }
+                        </View>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity

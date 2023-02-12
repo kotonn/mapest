@@ -251,7 +251,7 @@ export default function HomeScreen() {
                             width: 230,
                             height: 40,
                             borderWidth: 1,
-                            marginTop: -130,
+                            marginTop: -140,
                             marginRight: 10,
                             marginBottom: 40,
                             borderRadius: 10,
@@ -269,7 +269,7 @@ export default function HomeScreen() {
                     />
                     <TouchableOpacity
                         onPress={getWeather}
-                        style={{ backgroundColor: "white", width: 50, height: 40, borderRadius: 10, justifyContent: 'center', alignItems: "center", marginTop: -130, opacity: 0.8 }}
+                        style={{ backgroundColor: "white", width: 50, height: 40, borderRadius: 10, justifyContent: 'center', alignItems: "center", marginTop: -140, opacity: 0.8 }}
                     >
                         <AntDesign name="search1" size={24} color="black" style={{ opacity: 0.5 }} />
                     </TouchableOpacity>
